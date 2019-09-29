@@ -34,8 +34,8 @@ services:
 #      - ./elasticsearch:/usr/share/elasticsearch/data
 
   web:
-    build: .
-    image: tootsuite/mastodon
+    #build: .
+    image: tootsuite/mastodon:v3.0.0rc1
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
@@ -54,8 +54,8 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
-    image: tootsuite/mastodon
+    #build: .
+    image: tootsuite/mastodon:v3.0.0rc1
     restart: always
     env_file: .env.production
     command: node ./streaming
@@ -71,8 +71,8 @@ services:
       - redis
 
   sidekiq:
-    build: .
-    image: tootsuite/mastodon
+    #build: .
+    image: tootsuite/mastodon:v3.0.0rc1
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
@@ -84,7 +84,7 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
-## Uncomment to enable federation with tor instances along with adding the following ENV variables
+        ## Uncomment to enable federation with tor instances along with adding the following ENV variables
 ## http_proxy=http://privoxy:8118
 ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
 #  tor:
